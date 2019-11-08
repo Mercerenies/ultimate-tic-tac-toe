@@ -1,7 +1,8 @@
 
 open Pos
 
-type t
+type board
+type t = board
 
 val total_cells : int
 
@@ -14,3 +15,15 @@ val get : t -> pos * pos -> tic
 val set : t -> pos * pos -> tic -> t
 
 val to_string : t -> string
+
+module Subboard : sig
+  type subboard
+  type t = subboard
+
+  val make : board -> pos -> t
+  val board : t -> board
+  val pos : t -> pos
+  val get : t -> pos -> tic
+  val set : t -> pos -> tic -> t
+
+end

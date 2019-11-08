@@ -4,7 +4,8 @@ open Printf
 
 open Pos
 
-type t = Board of tic Vect.t
+type board = Board of tic Vect.t
+type t = board
 
 let index_of_pos' (a, b) =
   index_of_pos a * 9 + index_of_pos b
@@ -38,3 +39,14 @@ let to_string board =
                                     String.concat "|") in
   lines' |> group3 "\n" |> String.concat horiz_delim
 
+module Subboard = struct
+  type subboard = Subboard of board * pos
+  type t = subboard
+
+  let make b p = Subboard (b, p)
+  let board (Subboard (b, _)) = b
+  let pos (Subboard (_, p)) = p
+  let get (Subboard (b, p)) p' = get b (p, p')
+  let set (Subboard (b, p)) p' tic = Subboard (set b (p, p') tic, p)
+
+end
