@@ -23,10 +23,10 @@ let get (Board vec) p = Vect.get vec (index_of_pos' p)
 
 let set (Board vec) p v = Board (Vect.set vec (index_of_pos' p) v)
 
-let to_string board =
+let abstract_to_string acc =
   let hpositions = List.cartesian_product [Left; Center; Right] [Left; Center; Right] in
   let vpositions = List.cartesian_product [Top; Middle; Bottom] [Top; Middle; Bottom] in
-  let row v v' = List.map (fun (h, h') -> get board (Pos (h, v), Pos (h', v'))) hpositions in
+  let row v v' = List.map (fun (h, h') -> acc (Pos (h, v), Pos (h', v'))) hpositions in
   let horiz_delim = "\n---+---+---\n" in
 
   let rec group3 s xs = match xs with
@@ -38,6 +38,8 @@ let to_string board =
                                     group3 "" %>
                                     String.concat "|") in
   lines' |> group3 "\n" |> String.concat horiz_delim
+
+let to_string board = abstract_to_string (get board)
 
 module Subboard = struct
   type subboard = Subboard of board * pos
