@@ -4,10 +4,10 @@
 open Printf
 open Batteries
 
+open Board
+open Subboard
 open Outcome
 open Pos
-
-module Subboard = Board.Subboard
 
 module SubboardOutcome = Outcome.Make(Subboard)
 
