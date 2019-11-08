@@ -1,11 +1,5 @@
 
-type tic = Empty | X | O
-
-type hpos = Left | Center | Right
-
-type vpos = Top | Middle | Bottom
-
-type pos = Pos of hpos * vpos
+open Pos
 
 type t
 
