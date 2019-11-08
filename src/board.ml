@@ -1,5 +1,6 @@
 
 open Batteries
+open Printf
 
 open Pos
 
@@ -21,7 +22,19 @@ let get (Board vec) p = Vect.get vec (index_of_pos' p)
 
 let set (Board vec) p v = Board (Vect.set vec (index_of_pos' p) v)
 
-(* /////
 let to_string board =
-  let row a b = 
-*)
+  let hpositions = List.cartesian_product [Left; Center; Right] [Left; Center; Right] in
+  let vpositions = List.cartesian_product [Top; Middle; Bottom] [Top; Middle; Bottom] in
+  let row v v' = List.map (fun (h, h') -> get board (Pos (h, v), Pos (h', v'))) hpositions in
+  let horiz_delim = "\n---+---+---\n" in
+
+  let rec group3 s xs = match xs with
+      (a :: b :: c :: xs) -> String.concat s [a; b; c] :: group3 s xs
+    | _ -> [] in
+
+  let lines = List.map (fun (v, v') -> row v v') vpositions in
+  let lines' = lines |> List.map (List.map (char_of_tic %> String.make 1) %>
+                                    group3 "" %>
+                                    String.concat "|") in
+  lines' |> group3 "\n" |> String.concat horiz_delim
+
