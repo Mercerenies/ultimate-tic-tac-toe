@@ -16,7 +16,7 @@ val get : t -> pos * pos -> tic
 
 val set : t -> pos * pos -> tic -> t
 
-val get_outcome : t -> pos -> tic
+val get_outcome : t -> pos -> tic option
 
 val to_string : t -> string
 

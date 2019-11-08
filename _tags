@@ -1,2 +1,2 @@
 <src>: include
-<**/*.ml> or <**/tictactoe.native>: package(batteries)
+<**/*.ml> or <**/*.mli> or <**/tictactoe.native>: package(batteries)

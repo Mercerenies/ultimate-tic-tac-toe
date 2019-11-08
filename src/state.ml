@@ -7,15 +7,15 @@ module SubboardOutcome = Outcome.Make(Subboard)
 
 type state = {
     board: Board.t;
-    outcomes: tic Vect.t;
+    outcomes: tic option Vect.t;
   }
 type t = state
 
 let update_outcome pos state =
   let index = index_of_pos pos in
   match Vect.get state.outcomes index with
-    X | O -> state
-    | Empty ->
+    Some _ -> state
+    | None ->
        let subboard = Subboard.make state.board pos in
        {
          board=state.board;
@@ -29,7 +29,7 @@ let update_outcomes (state : t) =
 let state_of_board b =
   update_outcomes {
       board=b;
-      outcomes=Vect.make 9 Empty
+      outcomes=Vect.make 9 None
     }
 
 let init f = state_of_board (Board.init f)
@@ -51,11 +51,11 @@ let get_outcome s p = Vect.get s.outcomes (index_of_pos p)
 let to_string state =
   Board.abstract_to_string (fun (p, p') ->
       match get_outcome state p with
-        Empty  -> get state (p, p')
-      | result -> result
+        None -> get state (p, p')
+      | Some result -> result
     )
 
 module OutcomeGrid = struct
   type t = state
-  let get = get_outcome
+  let get s p = get_outcome s p |? Empty
 end

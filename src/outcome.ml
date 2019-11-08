@@ -8,10 +8,6 @@ module type HasTic = sig
   val get : t -> pos -> tic
 end
 
-let first_nonempty x y = match x with
-    Empty -> y
-  | _     -> x
-
 let all_match xs = match xs with
     [] -> None
   | (x :: xs) -> if List.for_all (( = ) x) xs then Some x else None
@@ -30,11 +26,22 @@ let winning_sequences = [
     [Pos (Right, Top); Pos (Center, Middle); Pos (Left, Bottom)];
   ]
 
+let empty_to_none x = match x with
+    Some Empty -> None
+  | x -> x
+
 module Make (Acc : HasTic) = struct
 
+  let free_positions b =
+    let positions = List.init 9 pos_of_index in
+    List.filter (fun p -> Acc.get b p = Empty) positions
+
   let determine_winner b =
-    winning_sequences |>
-      List.map (List.map (Acc.get b) %> all_match %> Option.default Empty) |>
-      List.fold_left first_nonempty Empty
+    if free_positions b = [] then
+      Some Empty (* It's a tie *)
+    else
+      winning_sequences |>
+        List.map (List.map (Acc.get b) %> all_match %> empty_to_none) |>
+        List.fold_left Util.merge_opt None
 
 end
