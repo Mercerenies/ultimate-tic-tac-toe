@@ -18,3 +18,5 @@ val vpos_of_index : int -> vpos
 val index_of_pos : pos -> int
 
 val pos_of_index : int -> pos
+
+val char_of_tic : tic -> char

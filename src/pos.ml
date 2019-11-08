@@ -38,3 +38,9 @@ let index_of_pos (Pos (h, v)) =
 
 let pos_of_index n =
   Pos (hpos_of_index (n / 3), vpos_of_index (n mod 3))
+
+let char_of_tic x =
+  match x with
+    Empty -> ' '
+  | X -> 'X'
+  | O -> 'O'

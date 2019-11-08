@@ -20,3 +20,8 @@ let empty = init (fun _ -> Empty)
 let get (Board vec) p = Vect.get vec (index_of_pos' p)
 
 let set (Board vec) p v = Board (Vect.set vec (index_of_pos' p) v)
+
+(* /////
+let to_string board =
+  let row a b = 
+*)
