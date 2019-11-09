@@ -18,7 +18,7 @@ let winning_sequences = [
     [Pos (Left, Middle); Pos (Center, Middle); Pos (Right, Middle)];
     [Pos (Left, Bottom); Pos (Center, Bottom); Pos (Right, Bottom)];
     (* Vertical *)
-    [Pos (Left, Top); Pos (Center, Middle); Pos (Left, Bottom)];
+    [Pos (Left, Top); Pos (Left, Middle); Pos (Left, Bottom)];
     [Pos (Center, Top); Pos (Center, Middle); Pos (Center, Bottom)];
     [Pos (Right, Top); Pos (Right, Middle); Pos (Right, Bottom)];
     (* Diagonal *)
