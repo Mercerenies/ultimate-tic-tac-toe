@@ -38,7 +38,7 @@ module Make (Rules : GameRules) = struct
       (x, value)
 
   and determine_best_move depth player state =
-    if depth <= 0 then
+    if depth <= 0 || Rules.is_terminal state then
       (* There are no longer any choices to be made, so return the
          state's value *)
        (None, Rules.heuristic_value state)
