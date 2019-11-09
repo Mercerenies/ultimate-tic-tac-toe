@@ -18,6 +18,6 @@ end
 
 module Make (Player1 : Player) (Player2 : Player) : sig
 
-  val play_game : unit -> tic
+  val play_game : unit -> tic * State.t
 
 end

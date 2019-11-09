@@ -34,7 +34,8 @@ let dbg () =
   print_endline "Hello! :)"
 
 let () =
-  let winner = FullGame.play_game () in
+  let winner, final = FullGame.play_game () in
+  print_endline (State.to_string final);
   match winner with
     X -> print_endline "The winner is X!"
   | O -> print_endline "The winner is O!"

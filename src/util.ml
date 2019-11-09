@@ -14,3 +14,8 @@ let find f s =
     Some (Seq.hd (Seq.filter_map f s))
   with
     Invalid_argument _ -> None
+
+let list_of_seq s =
+  (* We do it in two steps to get tail recursion out of Seq.fold_left *)
+  let list = Seq.fold_left (flip List.cons) [] s in
+  List.rev list

@@ -31,8 +31,8 @@ module Make (Player1 : Player) (Player2 : Player) = struct
     let state = Move.make_move next_move (tic_of_player turn) state in
     let open Move in
     match BigOutcomeGrid.determine_winner state.state with
-      None -> turn_of_game turn s1 s2 state
-    | Some x -> x
+      None -> turn_of_game (other turn) s1 s2 state
+    | Some x -> (x, state.state)
 
   let play_game () =
     let s1 = Player1.initial_state in
