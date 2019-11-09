@@ -10,7 +10,7 @@ val tic_of_player : player -> tic
 module type Player = sig
   type state
 
-  val initial_state : state
+  val initial_state : unit -> state
 
   val decide_move : player -> Move.t -> state -> Move.legalpos * state
 

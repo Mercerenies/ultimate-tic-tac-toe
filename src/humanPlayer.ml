@@ -5,7 +5,7 @@ open Pos
 
 type state = unit
 
-let initial_state = ()
+let initial_state () = ()
 
 let digit_string_of_pos (Pos (h, v), Pos (h', v')) =
   let hvalue = 1 + index_of_hpos h * 3 + index_of_hpos h' in

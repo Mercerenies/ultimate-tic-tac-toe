@@ -16,7 +16,7 @@ let tic_of_player p = match p with
 module type Player = sig
   type state
 
-  val initial_state : state
+  val initial_state : unit -> state
 
   val decide_move : player -> Move.t -> state -> Move.legalpos * state
 
@@ -35,8 +35,8 @@ module Make (Player1 : Player) (Player2 : Player) = struct
     | Some x -> (x, state.state)
 
   let play_game () =
-    let s1 = Player1.initial_state in
-    let s2 = Player2.initial_state in
+    let s1 = Player1.initial_state () in
+    let s2 = Player2.initial_state () in
     let move = { Move.state=State.empty; Move.last_move=None } in
     turn_of_game P1 s1 s2 move
 
