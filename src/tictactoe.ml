@@ -5,10 +5,12 @@ open Printf
 open Batteries
 
 open Pos
+open Minimax
+open MinimaxPlayer
 
 module SubboardOutcome = Outcome.Make(Subboard)
 
-module FullGame = Game.Make(HumanPlayer)(RandomPlayer)
+module FullGame = Game.Make(HumanPlayer)(MinimaxPlayer.Make(struct let depth = 5 end))
 
 let fn (_, Pos (x, y)) = match x, y with
     (Left, Top) | (Right, Bottom) -> X
