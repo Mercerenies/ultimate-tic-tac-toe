@@ -3,18 +3,19 @@
 
 open Printf
 open Batteries
-open Game
 
 open Pos
 
 module SubboardOutcome = Outcome.Make(Subboard)
+
+module FullGame = Game.Make(HumanPlayer)(HumanPlayer)
 
 let fn (_, Pos (x, y)) = match x, y with
     (Left, Top) | (Right, Bottom) -> X
   | (Center, Middle) -> X
   | _ -> Empty
 
-let () =
+let dbg () =
   let board = Board.init fn in
   let state = State.state_of_board board in
   let move = { Move.state=state; Move.last_move=Some (Pos(Left, Top), Pos(Left, Middle)) } in
@@ -31,3 +32,10 @@ let () =
   print_all moves;
   (* printf "%c\n" (Pos.char_of_tic @@ SubboardOutcome.determine_winner subboard); *)
   print_endline "Hello! :)"
+
+let () =
+  let winner = FullGame.play_game () in
+  match winner with
+    X -> print_endline "The winner is X!"
+  | O -> print_endline "The winner is O!"
+  | Empty -> print_endline "It's a draw!"
