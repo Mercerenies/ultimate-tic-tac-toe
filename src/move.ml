@@ -32,3 +32,8 @@ let is_legal_move prev next =
 let legal_moves prev =
   let possible_moves = List.cartesian_product all_positions all_positions in
   Seq.filter_map (is_legal_move prev) (Seq.of_list possible_moves)
+
+let make_move { legalpos=pos } tic prev = {
+    state=State.set prev.state pos tic;
+    last_move=Some pos;
+  }

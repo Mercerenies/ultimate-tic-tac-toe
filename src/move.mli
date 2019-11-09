@@ -17,3 +17,5 @@ val is_free_play : t -> bool
 val is_legal_move : t -> pos * pos -> legalpos option
 
 val legal_moves : t -> legalpos Seq.t
+
+val make_move : legalpos -> tic -> t -> t
