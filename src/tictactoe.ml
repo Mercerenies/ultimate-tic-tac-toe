@@ -3,6 +3,7 @@
 
 open Printf
 open Batteries
+open Game
 
 open Pos
 
