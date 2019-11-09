@@ -1,5 +1,6 @@
 
 open Batteries
+open Printf
 
 type tic = Empty | X | O
 
@@ -46,5 +47,20 @@ let char_of_tic x =
     Empty -> ' '
   | X -> 'X'
   | O -> 'O'
+
+let string_of_hpos h =
+  match h with
+    Left   -> "Left"
+  | Center -> "Center"
+  | Right  -> "Right"
+
+let string_of_vpos v =
+  match v with
+    Top    -> "Top"
+  | Middle -> "Middle"
+  | Bottom -> "Bottom"
+
+let string_of_pos (Pos (h, v)) =
+  sprintf "%s %s" (string_of_hpos h) (string_of_vpos v)
 
 let all_positions = List.init 9 pos_of_index
