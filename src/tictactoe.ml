@@ -8,7 +8,7 @@ open Pos
 
 module SubboardOutcome = Outcome.Make(Subboard)
 
-module FullGame = Game.Make(HumanPlayer)(HumanPlayer)
+module FullGame = Game.Make(HumanPlayer)(RandomPlayer)
 
 let fn (_, Pos (x, y)) = match x, y with
     (Left, Top) | (Right, Bottom) -> X
