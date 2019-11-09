@@ -5,7 +5,7 @@ open Pos
 
 type t = {
     state: State.t;
-    last_move: pos * pos;
+    last_move: (pos * pos) option;
   }
 
 type legalpos

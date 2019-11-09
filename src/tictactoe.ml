@@ -16,7 +16,7 @@ let fn (_, Pos (x, y)) = match x, y with
 let () =
   let board = Board.init fn in
   let state = State.state_of_board board in
-  let move = { Move.state=state; Move.last_move=(Pos(Left, Top), Pos(Left, Middle)) } in
+  let move = { Move.state=state; Move.last_move=Some (Pos(Left, Top), Pos(Left, Middle)) } in
   (* let subboard = Subboard.make board (Pos (Left, Top)) in *)
   print_endline (Board.to_string board);
   print_endline (State.to_string state);
