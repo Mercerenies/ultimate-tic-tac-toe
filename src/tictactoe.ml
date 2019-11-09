@@ -10,7 +10,7 @@ open MinimaxPlayer
 
 module SubboardOutcome = Outcome.Make(Subboard)
 
-module FullGame = Game.Make(HumanPlayer)(MinimaxPlayer.Make(struct let depth = 5 end))
+module FullGame = Game.Make(HumanPlayer)(MinimaxPlayer.Make(struct let depth = 6 end))
 
 let fn (_, Pos (x, y)) = match x, y with
     (Left, Top) | (Right, Bottom) -> X

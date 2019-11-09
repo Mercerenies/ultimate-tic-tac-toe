@@ -32,4 +32,12 @@ let heuristic_value { Move.state=state; Move.last_move=prev } =
   | Some Empty -> 0
   | None ->
      (* In this case, we need to estimate *)
-     10 (* ///// *)
+     let win_score =
+       all_positions |>
+         List.map (State.get_outcome state) |>
+         List.map (function
+             | Some X -> -100
+             | Some O ->  100
+             | _      ->    0) |>
+         List.sum in
+     win_score
