@@ -1,4 +1,6 @@
 
+open Batteries
+
 type tic = Empty | X | O
 
 type hpos = Left | Center | Right
@@ -44,3 +46,5 @@ let char_of_tic x =
     Empty -> ' '
   | X -> 'X'
   | O -> 'O'
+
+let all_positions = List.init 9 pos_of_index

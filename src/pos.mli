@@ -20,3 +20,5 @@ val index_of_pos : pos -> int
 val pos_of_index : int -> pos
 
 val char_of_tic : tic -> char
+
+val all_positions : pos list

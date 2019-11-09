@@ -6,6 +6,7 @@ open Batteries
 
 open Pos
 open State
+open Move
 
 module SubboardOutcome = Outcome.Make(Subboard)
 
