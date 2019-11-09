@@ -1,8 +1,6 @@
 
 open Pos
 
-module BigOutcomeGrid = Outcome.Make(State.OutcomeGrid)
-
 type player = P1 | P2
 
 let other p = match p with
@@ -30,7 +28,7 @@ module Make (Player1 : Player) (Player2 : Player) = struct
       | P2 -> let m, s = Player2.decide_move P2 state s2 in m, s1, s in
     let state = Move.make_move next_move (tic_of_player turn) state in
     let open Move in
-    match BigOutcomeGrid.determine_winner state.state with
+    match State.whole_outcome state.state with
       None -> turn_of_game (other turn) s1 s2 state
     | Some x -> (x, state.state)
 

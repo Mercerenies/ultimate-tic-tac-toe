@@ -27,6 +27,4 @@ module OutcomeGrid : sig
   val get : t -> pos -> tic
 end
 
-(*
-val to_string : t -> string
-*)
+val whole_outcome : t -> tic option
