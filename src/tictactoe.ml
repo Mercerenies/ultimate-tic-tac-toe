@@ -5,12 +5,19 @@ open Printf
 open Batteries
 
 open Pos
-open Minimax
-open MinimaxPlayer
 
 module SubboardOutcome = Outcome.Make(Subboard)
 
+(* Uncomment one of these (I'll make them command line args later) *)
+
+(* Human vs Minimax AI *)
 module FullGame = Game.Make(HumanPlayer)(MinimaxPlayer.Make(struct let depth = 6 end))
+
+(* Human vs Random-Moving AI *)
+(* module FullGame = Game.Make(HumanPlayer)(RandomPlayer) *)
+
+(* Human vs Human *)
+(* module FullGame = Game.Make(HumanPlayer)(HumanPlayer) *)
 
 let fn (_, Pos (x, y)) = match x, y with
     (Left, Top) | (Right, Bottom) -> X
