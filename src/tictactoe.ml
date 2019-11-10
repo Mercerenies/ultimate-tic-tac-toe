@@ -10,8 +10,11 @@ module SubboardOutcome = Outcome.Make(Subboard)
 
 (* Uncomment one of these (I'll make them command line args later) *)
 
+(* Human vs Alpha-Beta AI *)
+module FullGame = Game.Make(HumanPlayer)(AlphaBetaPlayer.Make(struct let depth = 6 end))
+
 (* Human vs Minimax AI *)
-module FullGame = Game.Make(HumanPlayer)(MinimaxPlayer.Make(struct let depth = 6 end))
+(* module FullGame = Game.Make(HumanPlayer)(MinimaxPlayer.Make(struct let depth = 6 end)) *)
 
 (* Human vs Random-Moving AI *)
 (* module FullGame = Game.Make(HumanPlayer)(RandomPlayer) *)
